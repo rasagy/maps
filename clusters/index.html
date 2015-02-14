@@ -42,6 +42,17 @@ featureLayer.on('ready', function(e) {
     map.addLayer(clusterGroup);
 });
 
+featureLayer.on('mouseover', function(e) {
+    e.layer.openPopup();
+});
+
+featureLayer.on('mouseout', function(e) {
+    e.layer.closePopup();
+});
+
+
+
+
 </script>
 </script>
 </body>
