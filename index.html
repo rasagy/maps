@@ -14,7 +14,7 @@
 </style>
 </head>
 <body>
-<p>I'm hosted with GitHub Pages.</p>
+<center><h3>Bangalore Bus Stops Mapped!</h3></center>
 <div id="map">
 </div>
 
@@ -30,8 +30,7 @@ var map=L.mapbox.map('map', 'examples.map-i86nkdio').setView([12.9822, 77.5853],
 // So the CSV file must be on the same domain as the Javascript, or the server
 // delivering it should support CORS.
 var featureLayer = L.mapbox.featureLayer()
-    .loadURL('data/blr_bus_stop.geojson')
-    .addTo(map);
+    .loadURL('data/blr_bus_stop.geojson');
 
 featureLayer.on('ready', function(e) {
     // The clusterGroup gets each marker in the group added to it
