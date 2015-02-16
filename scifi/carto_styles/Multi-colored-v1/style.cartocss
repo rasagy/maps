@@ -1,0 +1,388 @@
+// Languages: name (local), name_en, name_fr, name_es, name_de
+@name: '[name_en]';
+
+// Fonts //
+@sans: 'Magda Clean Offc Pro Regular';
+@sans_bold: 'Magda Clean Offc Pro Bold';
+
+/*
+This style is designed to be easily recolored by adjusting the color
+variables below. For predicatable feature relationships,
+maintain or invert existing value (light to dark) scale.
+*/
+
+// Color palette //
+@road:  #18a;
+@bridge: #058;
+@land:  #225;
+
+@scifi1:#69e;
+@scifi2:#3de;
+@scifi3:#fe6;
+@scifi4:#f43;
+
+@fill1: #fff;
+@fill2: #bbb;
+@fill3: #777;
+@fill4: #000;
+
+@text: #ccc;
+
+Map {
+  background-color: @land;
+  buffer-size: 100000;
+  }
+
+// Roads //
+
+#road {
+  line-color: @road;
+  line-opacity:0.3;
+  [type='trunk'],  [type='trunk_link']{
+    line-opacity:0.8;
+    line-width:2;
+    }
+  [type='primary']{
+    line-opacity:0.7;
+    line-width:2;
+    }
+  [type='secondary']{
+    line-opacity:0.6;
+    line-width:1;
+    }
+  [type='tertiary']{
+    line-opacity:0.5;
+    line-width:1;
+    }
+  }
+
+#bridge {
+  line-color: @bridge;
+  line-opacity:0.1;
+  [type='trunk'],  [type='trunk_link']{
+    line-opacity:0.7;
+    line-width:2;
+    }
+  [type='primary']{
+    line-opacity:0.6;
+    line-width:2;
+    }
+  [type='secondary']{
+    line-opacity:0.5;
+    line-width:1;
+    }
+  [type='tertiary']{
+    line-opacity:0.4;
+    line-width:1;
+    }
+  }
+
+#poi_label[type='Bus Station'] {
+  marker-fill: @scifi2;
+  marker-width: 6;  marker-height: 6;
+  marker-line-color: @scifi2;
+  marker-line-width: 7;
+  marker-line-opacity:0.5;
+  marker-type: ellipse;
+  [zoom>=15]{  
+    text-dy:5;
+    text-name:'[name]';
+    text-face-name:@sans;
+    text-fill:@text;
+    text-halo-fill: @scifi2;
+    text-halo-radius: 1;
+    text-halo-opacity: 0.3;
+    text-wrap-width:30;
+    text-allow-overlap:false;
+    }
+  }
+
+#Blr_bus_stop{
+  marker-fill: @scifi1;
+  marker-line-color: @scifi1;
+  marker-line-width: 0;
+  marker-line-opacity:0.3;
+  marker-type: ellipse;
+  marker-width: 1;
+  marker-height: 1;
+  marker-opacity: 0.7;
+  [zoom>=10]{
+    marker-width: 1;
+    marker-height: 1;
+    marker-line-width: 2;
+    }
+  [zoom>=12]{
+    marker-width: 2;
+    marker-height: 2;
+    marker-line-width: 3;
+    marker-opacity: 1;
+    }
+  [zoom>=14]{
+    marker-width: 5;
+    marker-height: 5;
+    marker-line-width: 6;
+    }
+  [zoom>=15]{  
+    text-dy:5;
+    text-name:'[name]';
+    text-face-name:@sans;
+    text-fill:@text;
+    text-halo-fill: @scifi1;
+    text-halo-radius: 1;
+    text-halo-opacity: 0.3;
+    text-wrap-width:25;
+    text-allow-overlap:false;
+    }
+  }
+
+// Road labels
+
+#road_label[len>2000][zoom>=12],
+#road_label[len>1000][zoom>=15] { 
+  text-placement: line;
+  text-transform: uppercase;
+  text-face-name: @sans;
+  text-name: @name;
+  text-size: 9;
+  text-min-distance: 100;
+  text-halo-fill: @land;
+  text-halo-radius: 1;
+  text-fill: @text;
+  [zoom>=17] { text-size: 11;}
+}
+
+// Rail //
+
+#road[type='rail'][class='major_rail'], #tunnel[type='rail'][class='major_rail']{
+    line-opacity:0.8;
+    line-width:2;
+    line-color:@scifi4;
+  }
+#bridge[type='rail'][class='major_rail']{
+    line-opacity:0.8;
+    line-width:3;
+    line-color:@scifi4;
+  }
+#road[type='rail'][class='minor_rail']{
+    line-opacity:0.3;
+    line-width:1;
+    line-color:@scifi4;
+  }
+#bridge[type='rail'][class='minor_rail']{
+    line-opacity:0.3;
+    line-width:2;
+    line-color:@scifi4;
+  }
+
+#poi_label[maki='rail'][scalerank=1] {
+  marker-fill: @scifi4;
+  marker-width: 10;  marker-height: 10;
+  marker-line-color: @scifi4;
+  marker-line-width: 7;
+  marker-line-opacity:0.5;
+  marker-type: ellipse;
+  [zoom>=14]{  
+    text-dy:5;
+    text-name:'[name]';
+    text-face-name:@sans;
+    text-fill:@text;
+    text-halo-fill: @scifi4;
+    text-halo-radius: 1;
+    text-halo-opacity: 0.3;
+    text-wrap-width:30;
+    text-allow-overlap:false;
+    }
+  }
+
+// Subway & Metro //
+
+#road[type='subway'][class='major_rail'], #tunnel[type='subway'][class='major_rail'], #bridge[type='subway'][class='major_rail']{
+    line-opacity:0.8;
+    line-width:3;
+    line-color:@scifi3;
+  }
+#road[type='subway'][class='minor_rail'], #tunnel[type='subway'][class='minor_rail'], #bridge[type='subway'][class='minor_rail']{
+    line-opacity:0.2;
+    line-width:2;
+    line-color:@scifi3;
+  }
+
+#poi_label[maki='rail-metro'] {
+  marker-fill: @scifi3;
+  marker-width: 8;  marker-height: 8;
+  marker-line-color: @scifi3;
+  marker-line-width: 7;
+  marker-line-opacity:0.5;
+  marker-type: ellipse;
+  [zoom>=14]{  
+    text-dy:5;
+    text-name:'[name]';
+    text-face-name:@sans;
+    text-fill:@text;
+    text-halo-fill: @scifi3;
+    text-halo-radius: 1;
+    text-halo-opacity: 0.3;
+    text-wrap-width:30;
+    text-allow-overlap:false;
+    }
+  }
+
+// Other labels //
+
+// Political boundaries //
+#admin[admin_level=2][maritime=0] {
+  line-join: round;
+  line-color: mix(@fill3,@fill2,50);
+  line-width: 1;
+  [zoom>=5] { line-width: 1.4; }
+  [zoom>=6] { line-width: 1.8; }
+  [zoom>=8] { line-width: 2; }
+  [zoom>=10] { line-width: 3; }
+  [disputed=1] { line-dasharray: 4,4; }
+}
+
+#admin[admin_level>2][maritime=0] {
+  line-join: round;
+  line-color: @fill2;
+  line-width: 1;
+  line-dasharray: 3,2;
+  [zoom>=6] { line-width: 1.5; }
+  [zoom>=8] { line-width: 1.8; }
+}
+
+// Country labels //
+#country_label[zoom>=3] {
+  text-name: @name;
+  text-face-name: @sans_bold;
+  text-fill: @text;
+  text-size: 12;
+  text-halo-fill: @land;
+  text-halo-radius: 1;
+  text-wrap-width: 50;
+  [zoom>=3][scalerank=1],
+  [zoom>=4][scalerank=2],
+  [zoom>=5][scalerank=3],
+  [zoom>=6][scalerank>3] {
+    text-size: 14;
+  }
+  [zoom>=4][scalerank=1],
+  [zoom>=5][scalerank=2],
+  [zoom>=6][scalerank=3],
+  [zoom>=7][scalerank>3] {
+    text-size: 16;
+  }
+  [zoom>=6][scalerank=1],
+  [zoom>=7][scalerank=2],
+  [zoom>=8][scalerank>=3] {
+    text-size: 20;
+  }
+}
+
+#country_label_line { 
+  line-color: @text;
+  line-dasharray: 3,3;
+  line-width: 1;
+}
+
+// State labels //
+#state_label { 
+  text-name: @name;
+  text-face-name: @sans;
+  text-fill: @text;
+  text-size: 12;
+  text-halo-fill: @land;
+  text-halo-radius: 1;
+  text-wrap-width: 50;
+}
+
+// Display capital cities alongside stars.
+#place_label::capitals[type='city'][capital=2][zoom<9] { 
+  shield-file: url("star.svg");
+  shield-name: @name;
+  shield-face-name: @sans;
+  shield-size: 14;
+  shield-fill: @text;
+  shield-halo-fill: @land;
+  shield-halo-radius: 1;
+  shield-unlock-image: true;
+  shield-wrap-width: 80;
+  shield-line-spacing: -2;
+  // Fine-tune label positioning.
+  [ldir='E'] { shield-text-dx: 6; }
+  [ldir='W'] { shield-text-dx: -6; }
+  [ldir='N'] { shield-text-dy: -5; }
+  [ldir='S'] { shield-text-dy: 6; }
+  [ldir='NE'] { shield-text-dx: 3; shield-text-dy: -3; }
+  [ldir='SE'] { shield-text-dx: 3; shield-text-dy: 3; }
+  [ldir='SW'] { shield-text-dx: -3; shield-text-dy: 3; }
+  [ldir='NW'] { shield-text-dx: -3; shield-text-dy: -3; }
+
+  [zoom>=6] { shield-size: 16; } 
+}
+
+// Display low zoom cities alongside points.
+#place_label[type='city'][localrank=1][zoom>=4][zoom<9],
+#place_label[type='city'][localrank=2][zoom>=5][zoom<10],
+#place_label[type='city'][localrank=3][zoom>=7][zoom<10],
+#place_label[type='city'][localrank>=4][localrank>9][zoom>=8][zoom<10],
+#place_label[type='town'][localrank<=1][zoom>=9][zoom<10] {
+  shield-name: @name;
+  shield-face-name: @sans;
+  shield-size: 12;
+  shield-fill: @text;
+  shield-halo-fill: @land;
+  shield-halo-radius: 1;
+  shield-unlock-image: true;
+  shield-file: url("dot.svg");
+  shield-wrap-width: 80;
+  shield-line-spacing: -2;
+
+  // Fine-tune label positioning.
+  [ldir='E'] { shield-text-dx: 6; }
+  [ldir='W'] { shield-text-dx: -6; }
+  [ldir='N'] { shield-text-dy: -5; }
+  [ldir='S'] { shield-text-dy: 6; }
+  [ldir='NE'] { shield-text-dx: 3; shield-text-dy: -3; }
+  [ldir='SE'] { shield-text-dx: 3; shield-text-dy: 3; }
+  [ldir='SW'] { shield-text-dx: -3; shield-text-dy: 3; }
+  [ldir='NW'] { shield-text-dx: -3; shield-text-dy: -3; }
+
+  [zoom>=6] { shield-size: 14; }
+
+  // Emphasize major cities.
+  [scalerank<=6] { shield-size: 14; }
+  [zoom>=6][scalerank<=6] { shield-size: 16; } 
+}
+
+// Gradually replace shields with regular text labels.
+#place_label[type='city'][localrank=1][zoom>=9],
+#place_label[type='city'][zoom>=10] {
+  text-name: @name;
+  text-face-name: @sans_bold;
+  text-size: 16;
+  text-transform:uppercase;
+  text-fill: @text;
+  text-halo-fill: @land;
+  text-halo-radius: 1;
+  text-min-distance: 4;
+  text-wrap-width: 80;
+  [scalerank<=3] { 
+    text-fill: @text;
+    text-size: 20;
+  } 
+}
+
+// Low priority place labels //
+
+#place_label[type='suburb'][localrank<=1][zoom>=12],
+#place_label[type='neighbourhood'][localrank<=2][zoom>=14],
+#place_label[type='suburb'][zoom>=16]{ 
+  text-name: @name;
+  text-face-name: @sans;
+  text-size: 14;
+  text-fill: @text;
+  text-halo-fill: @land;
+  text-halo-radius: 1;
+  text-min-distance: 4;
+  text-wrap-width: 60;
+}
