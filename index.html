@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Design Notes by Rasagy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="My design blog!">
+    <meta name="author" content="Rasagy Sharma">
+    
+    <link rel="canonical" href="http://rasagy.in/blog/">
+    <style>
+    	/**
+		 * Remove default margin.
+		 */
+
+		body,div,img {
+		  margin: 0;
+		}
+		
+		/**
+		 * Remove the gray background color from active links in IE 10.
+		 */
+
+		a {
+		  background-color: transparent;
+		}
+
+		/**
+		 * Improve readability when focused and also mouse hovered in all browsers.
+		 */
+
+		a:active,
+		a:hover {
+		  outline: 0;
+		}
+
+		/**
+		 * Remove border when inside `a` element in IE 8/9/10.
+		 */
+
+		img {
+		  border: 0;
+		}
+
+		body {
+			font: 14px/30px Arial, sans-serif;
+			background: #000;
+			padding-top:2em;
+		}
+
+		a.hero {
+			color: rgba(240,240,240,0.9);			
+		}
+
+		.hero div {
+			width: 100%;
+			max-height: 500px;
+			min-height: 300px;
+			position:relative;
+			opacity: 0.9;
+		}
+		.hero .detail {
+			display:block;
+			position: absolute;
+			font-size: 2em;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 30px;
+			background: rgba(0,0,0,0.5);
+			padding: 0.5em 000;
+			text-align: center;
+		}
+		a.hero:hover div{
+			opacity: 1;
+		}
+		a.hero:hover .detail{
+			background: rgba(0,0,0,0.7);
+		}
+
+		@media screen and (max-width: 600px) { 
+			.hero .detail {
+				font-size: 1em;
+			}
+		}
+    </style>
+</head>
+<body>
+<a href="scifi/" class="hero"><div id="scifi" style="background: #225 url('scifi/hero.png') no-repeat center center;">
+	<span class="detail">Sci-fi style for Mapbox Studio</span>
+</div></a>
+<a href="clusters/" class="hero"><div id="clusters" class="hero" style="background: #225 url('clusters/hero.png') no-repeat center center;">
+	<span class="detail">Visualizing Bangalore Bus stops as clusters</span>
+</div></a>
+</body>
+</html>
