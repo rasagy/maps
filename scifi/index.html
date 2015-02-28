@@ -13,11 +13,17 @@
 <div id="map">
 </div>
 
+<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
+
 <script>
 // Provide your access token
 L.mapbox.accessToken = 'pk.eyJ1IjoicmFzYWd5IiwiYSI6Ilk2ay1VMEEifQ.CJfn_CxDfwyN5xaVfx4jaw';
 // Create a map in the div #map
-var map=L.mapbox.map('map', 'rasagy.80ce7528').setView([12.9822, 77.5853], 13);
+var map=L.mapbox.map('map', 'rasagy.80ce7528')
+				.setView([12.9822, 77.5853], 13)
+				.addControl(L.mapbox.geocoderControl('mapbox.places', {
+        			autocomplete: true
+    			}));
 // Scifi map: rasagy.80ce7528
 
 // As with any other AJAX request, this technique is subject to the Same Origin Policy:
@@ -27,6 +33,7 @@ var map=L.mapbox.map('map', 'rasagy.80ce7528').setView([12.9822, 77.5853], 13);
 var featureLayer = L.mapbox.featureLayer()
     .loadURL('data/blr_bus_stop.geojson')
     .addTo(map);
+var hash = L.hash(map);
 
 </script>
 </script>
