@@ -39,8 +39,27 @@ featureLayer.on('ready', function(e) {
         clusterGroup.addLayer(layer);
     });
     map.addLayer(clusterGroup);
-});
 
+    e.target.eachLayer(function(layer) {
+
+    /*
+    From: https://www.mapbox.com/mapbox.js/example/v1.0.0/custom-popup/
+    // here you call `bindPopup` with a string of HTML you create - the feature
+    // properties declared above are available under `layer.feature.properties`
+    
+    var content = '<h2>A ferry ride!<\/h2>' +
+        '<p>From: ' + layer.feature.properties.from + '<br \/>' +
+        'to: ' + layer.feature.properties.to + '<\/p>';
+
+    var content='Bus stop'; //Static text as popup
+    */
+
+    var content = 'Stop: <a href=\"http://www.openstreetmap.org/'+layer.feature.id+'\">'+layer.feature.properties.name + '</a><br \>';
+
+    layer.bindPopup(content);
+    });
+});
+/*
 featureLayer.on('mouseover', function(e) {
     e.layer.openPopup();
 });
@@ -48,7 +67,7 @@ featureLayer.on('mouseover', function(e) {
 featureLayer.on('mouseout', function(e) {
     e.layer.closePopup();
 });
-
+*/
 
 
 
